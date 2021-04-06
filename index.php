@@ -2,6 +2,7 @@
 
 require "./src/class/user.php";
 require "./lib/JSONReader.php";
+require "./lib/UsersSearchFunctions.php";
 
 /*
 $prova = new User();
@@ -26,10 +27,27 @@ foreach ($usersList as $user) {
     $userObj->setLastName($user['lastName']);
     $userObj->setBirthday($user['birthday']);
     $userObj->setEmail($user['email']);
-    $userListDisplay[]=$userObj;
+    $userListDisplay[] = $userObj;
 }
 //print_r($userListDisplay);
 
+if (isset($_GET['search_name']) && ($_GET['search_name'] != '')) {
+    //$searchTextName = trim(filter_var($_GET['search_name'], FILTER_SANITIZE_STRING));
+    $userListDisplay = array_filter($userListDisplay, _searchUserName($_GET['search_name']));
+    echo $_GET['search_name'];
+}
+//else{
+    //$searchTextName = '';
+//}
+if (isset($_GET['search_lastname']) && ($_GET['search_lastname'] != '')) {
+    //$searchTextLastname = trim(filter_var($_GET['search_lastname'], FILTER_SANITIZE_STRING));
+    $userListDisplay = array_filter($userListDisplay, _searchUserLastname($_GET['search_lastname']));
+    echo $_GET['search_lastname'];
+}
+//else{
+    //$searchTextLastname = '';
+//}
+//echo $_GET['search_name'];
 ?>
 
 <!DOCTYPE html>
@@ -75,11 +93,11 @@ foreach ($usersList as $user) {
                     </th>
 
                     <th>
-                        <input class="form-control" type="text" id="search_name">
+                        <input class="form-control" type="text" id="search_name" name="search_name">
                     </th>
 
                     <th>
-                        <input class="form-control" type="text" id="search_lastname">
+                        <input class="form-control" type="text" id="search_lastname" name="search_lastname">
                     </th>
 
                     <th>
@@ -93,16 +111,16 @@ foreach ($usersList as $user) {
                         <button class="btn btn-primary" type="submit">cerca</button>
                     </th>
                 </tr>
-                
-                
-                    <?php
-                    foreach ($userListDisplay as $row) {
-                        $id = $row->getUserId();
-                        $nome = $row->getFirstName();
-                        $cognome = str_replace('\' ', '\'', ucwords(str_replace('\'', '\' ', strtolower($row->getLastName()))));
-                        $mail = $row->getEmail();
-                        $eta = $row->getAge();
-                    ?>
+            </form>
+
+            <?php
+            foreach ($userListDisplay as $row) {
+                $id = $row->getUserId();
+                $nome = $row->getFirstName();
+                $cognome = str_replace('\' ', '\'', ucwords(str_replace('\'', '\' ', strtolower($row->getLastName()))));
+                $mail = $row->getEmail();
+                $eta = $row->getAge();
+            ?>
                 <tr>
                     <td> <?= $id ?> </td>
                     <td> <?= $nome ?> </td>
@@ -111,12 +129,12 @@ foreach ($usersList as $user) {
                     <td> <?= $eta ?> </td>
                 </tr>
 
-                <?php } ?>
+            <?php } ?>
 
-                
-                    
-            
-            </form>
+
+
+
+
         </table>
 
     </div>

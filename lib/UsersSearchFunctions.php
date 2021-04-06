@@ -27,8 +27,23 @@ function searchUser($searchArray){
 function searchUserName($search){
 
     return function($taskItem) use ($search){
-        $sanitizedSearchName = strtolower($search['firstName']);
+        $sanitizedSearchName = strtolower($search);
         $sanitizedItemName = strtolower($taskItem['firstName']);
+
+        if ($sanitizedItemName === $sanitizedSearchName) {
+            return true;
+        }else{
+            return false;
+        }
+    };
+}
+
+//funzione ricerca solo nome su oggetto
+function _searchUserName($search){
+
+    return function($taskItem) use ($search){
+        $sanitizedSearchName = strtolower($search);
+        $sanitizedItemName = strtolower($taskItem->getFirstName());
 
         if ($sanitizedItemName === $sanitizedSearchName) {
             return true;
@@ -42,8 +57,23 @@ function searchUserName($search){
 function searchUserLastname($search){
 
     return function($taskItem) use ($search){
-        $sanitizedSearchLastn = strtolower($search['lastName']);
+        $sanitizedSearchLastn = strtolower($search);
         $sanitizedItemLastn = strtolower($taskItem['lastName']);
+
+        if ($sanitizedItemLastn === $sanitizedSearchLastn) {
+            return true;
+        }else{
+            return false;
+        }
+    };
+}
+
+//funzione ricerca solo su cognome su oggetto
+function _searchUserLastname($search){
+
+    return function($taskItem) use ($search){
+        $sanitizedSearchLastn = strtolower($search);
+        $sanitizedItemLastn = strtolower($taskItem->getLastName());
 
         if ($sanitizedItemLastn === $sanitizedSearchLastn) {
             return true;

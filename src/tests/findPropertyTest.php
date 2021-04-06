@@ -37,8 +37,8 @@ foreach ($testResultsDataset as $row) {
 		/**
 		 * scrivi qui il tuo test
 		 */
-		$actual = array_filter($users, searchUserName($row));
-		$actual2 = array_filter($actual, searchUserLastname($row));
+		$actual = array_filter($users, searchUserName($firstName));
+		$actual2 = array_filter($actual, searchUserLastname($lastName));
 
 		//var_dump($actual2);
 		//echo "\n";
