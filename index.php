@@ -99,7 +99,7 @@ foreach ($usersList as $user) {
                     foreach ($userListDisplay as $row) {
                         $id = $row->getUserId();
                         $nome = $row->getFirstName();
-                        $cognome = $row->getLastName();
+                        $cognome = str_replace('\' ', '\'', ucwords(str_replace('\'', '\' ', strtolower($row->getLastName()))));
                         $mail = $row->getEmail();
                         $eta = $row->getAge();
                     ?>
