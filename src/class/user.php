@@ -121,9 +121,14 @@ class User {
         return $age;
     }
 
-
-
-
-
+    public function isAdult():bool
+    {
+        $age = $this->getAge();
+        if($age >= 18){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
