@@ -121,7 +121,7 @@ if (isset($_GET['search_age']) && ($_GET['search_age'] >= 0)){
             foreach ($userListDisplay as $row) {
                 $id = $row->getUserId();
                 $nome = $row->getFirstName();
-                $cognome = str_replace('\' ', '\'', ucwords(str_replace('\'', '\' ', strtolower($row->getLastName()))));
+                $cognome = ucfirst(strtolower($row->getLastName()));
                 $mail = $row->getEmail();
                 $eta = $row->getAge();
             ?>
