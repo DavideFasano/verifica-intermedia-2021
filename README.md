@@ -30,8 +30,8 @@ Visualizzare l'elenco degli **Users**.
 
 - [ ] Implementare le ricerche per presenti nell'intestazione della tabella.
 
-    - [ ] findByFirstName
-    - [ ] findByLastName
+    - [x] findByFirstName
+    - [x] findByLastName
     - [ ] findByAge (età)
 
 ---  

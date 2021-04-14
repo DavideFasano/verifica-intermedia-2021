@@ -112,7 +112,7 @@ class User {
 
 
     //metodo
-    public function getAge():int
+    public function getAge()
     {
         $today = new DateTime();
         $bday = new DateTime($this->getBirthday());
@@ -121,7 +121,7 @@ class User {
         return $age;
     }
 
-    public function isAdult():bool
+    public function isAdult()
     {
         $age = $this->getAge();
         if($age >= 18){

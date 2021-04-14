@@ -82,3 +82,16 @@ function _searchUserLastname($search){
         }
     };
 }
+
+//funzione ricerca eta
+function _searchUserAge($search){
+
+    return function($taskItem) use ($search){
+        $input = $taskItem->getAge();
+        if ($search === $input) {
+            return true;
+        }else{
+            return false;
+        }
+    };
+}

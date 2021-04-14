@@ -34,7 +34,7 @@ foreach ($usersList as $user) {
 if (isset($_GET['search_name']) && ($_GET['search_name'] != '')) {
     //$searchTextName = trim(filter_var($_GET['search_name'], FILTER_SANITIZE_STRING));
     $userListDisplay = array_filter($userListDisplay, _searchUserName($_GET['search_name']));
-    echo $_GET['search_name'];
+    //echo $_GET['search_name'];
 }
 //else{
     //$searchTextName = '';
@@ -42,12 +42,16 @@ if (isset($_GET['search_name']) && ($_GET['search_name'] != '')) {
 if (isset($_GET['search_lastname']) && ($_GET['search_lastname'] != '')) {
     //$searchTextLastname = trim(filter_var($_GET['search_lastname'], FILTER_SANITIZE_STRING));
     $userListDisplay = array_filter($userListDisplay, _searchUserLastname($_GET['search_lastname']));
-    echo $_GET['search_lastname'];
+    //echo $_GET['search_lastname'];
 }
 //else{
     //$searchTextLastname = '';
 //}
 //echo $_GET['search_name'];
+if (isset($_GET['search_age']) && ($_GET['search_age'] >= 0)){
+    $userListDisplay = array_filter($userListDisplay, _searchUserAge($_GET['search_age']));
+    echo $_GET['search_age'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +84,7 @@ if (isset($_GET['search_lastname']) && ($_GET['search_lastname'] != '')) {
     <div class="container">
         <table class="table">
             <tr>
-                <th>id</th>
+                <th>Id</th>
                 <th>nome</th>
                 <th>cognome</th>
                 <th>email</th>
@@ -105,7 +109,7 @@ if (isset($_GET['search_lastname']) && ($_GET['search_lastname'] != '')) {
                     </th>
 
                     <th>
-                        <input class="form-control" type="text" id="search_email">
+                        <input class="form-control" type="text" id="search_age" name="search_age">
                     </th>
                     <th>
                         <button class="btn btn-primary" type="submit">cerca</button>
