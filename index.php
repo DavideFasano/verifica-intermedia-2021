@@ -50,7 +50,7 @@ if (isset($_GET['search_lastname']) && ($_GET['search_lastname'] != '')) {
 //echo $_GET['search_name'];
 if (isset($_GET['search_age']) && ($_GET['search_age'] >= 0)){
     $userListDisplay = array_filter($userListDisplay, _searchUserAge($_GET['search_age']));
-    echo $_GET['search_age'];
+    //echo $_GET['search_age'];
 }
 ?>
 

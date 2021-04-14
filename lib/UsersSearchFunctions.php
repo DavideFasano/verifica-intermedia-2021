@@ -88,8 +88,11 @@ function _searchUserAge($search){
 
     return function($taskItem) use ($search){
         $input = $taskItem->getAge();
-        if ($search === $input) {
+        //echo $search." ".($search === $input);
+        if ($search == $input) {
+            //echo " ".$input;
             return true;
+            
         }else{
             return false;
         }
